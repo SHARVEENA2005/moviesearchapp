@@ -1,0 +1,77 @@
+@use './variables' as *;
+
+body {
+  margin: 0;
+  padding: 0;
+  background: $gradient-bg;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  color: $text-dark;
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.animated-header {
+  font-size: 3rem;
+  background: linear-gradient(45deg, $primary, $accent, darken($secondary, 15%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 2rem;
+  animation: gradientShift 8s ease infinite;
+  background-size: 300% 300%;
+
+  span {
+    display: inline-block;
+    animation: bounce 2s ease infinite;
+    
+    &:last-child {
+      animation-delay: 0.3s;
+    }
+  }
+}
+.movies-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  perspective: 1000px;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  color: $text-light;
+  font-size: 1.2rem;
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba($primary, 0.3);
+  border-radius: 50%;
+  border-top-color: $primary;
+  animation: spin 1s ease-in-out infinite;
+  margin: 2rem auto;
+}
+
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(-15px) }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg) }
+}
+

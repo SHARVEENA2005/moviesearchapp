@@ -1,0 +1,135 @@
+@use './variables' as *;
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.9);
+  animation: scaleUp 0.3s ease forwards;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  position: relative;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: $accent;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: rotate(90deg);
+    background: darken($accent, 10%);
+  }
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    align-self: center;
+
+    @media (min-width: 768px) {
+      align-self: flex-start;
+    }
+  }
+
+ .movie-details {
+    flex: 1;
+    text-align: left;
+
+    h2 {
+      color: $primary;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: $accent;
+        border-radius: 2px;
+      }
+    }
+
+    p {
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      color: $text-dark;
+    }
+
+    .details-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+
+      span {
+        background: rgba($primary, 0.1);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        color: $primary;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1 }
+}
+
+@keyframes scaleUp {
+  to { transform: scale(1) }
+}
